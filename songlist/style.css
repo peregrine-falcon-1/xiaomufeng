@@ -1,0 +1,168 @@
+/* 全局样式设置 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    /* 背景图设定为 Java 导出的 SVG */
+    background: url('./images/background.svg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+/* 根据布局图调整的布局外框 */
+.main-container {
+    width: calc(100% - 40px);
+    max-width: 900px;
+    margin-top: 200px;   /* 上方留白 */
+    margin-left: 300px;  /* 左侧留白 */
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 120px);
+}
+
+/* 搜索框 */
+.search-box {
+    margin-bottom: 15px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    font-size: 16px;
+    outline: none;
+}
+
+/* 分类标签栏 */
+.tab-bar {
+    display: flex;
+    gap: 10px;
+    border-bottom: 2px solid rgba(247, 245, 245, 0.952);
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+
+    /* 锁定高度，防止按钮高度微调影响下方排版 */
+    height: 45px; 
+    align-items: center;
+}
+
+.tab-btn {
+    border: none;
+    background: transparent;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s;
+    color: #ffffff;
+}
+
+.tab-btn.active {
+    background: #007aff;
+    color: white;
+    font-weight: bold;
+}
+
+/* 独立滚动区域 */
+.content-scroll-area {
+    flex: 1;
+    overflow-y: auto; /* 允许垂直独立滚动 */
+    padding-right: 10px;
+}
+
+/* 网格排列歌曲列表 */
+.song-grid {
+    /* 强制分为 4 列（如果屏幕小可自动适应） */
+    column-count: 4; 
+    
+    /* 两列之间的间距 */
+    column-gap: 8px; 
+    
+    width: 100%;
+    padding-bottom: 20px;
+}
+.song-grid[data-tab="流行"] {
+    column-count: 4;
+    column-gap: 2px;
+}
+/* 个人高光单独 3 列，间距放大以配合图片 */
+.song-grid[data-tab="个人高光"] {
+    column-count: 3;
+    column-gap: 16px;
+}
+
+/* 全局搜索时，若同时出现“高光结果”和“普通结果”两组网格，加一条分隔线 */
+#resultsContainer .song-grid + .song-grid {
+    margin-top: 8px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.song-item {
+    background: transparent;
+    border-radius: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+/* 文字排列样式 */
+    padding: 10px 8px;
+    text-align: left; /* 改为靠左对齐更符合纯文本歌单习惯，如需居中可改回 center */
+    font-size: 15px;
+    color: #ffffff;
+    font-weight: 500;
+
+    /* 核心：取消自动换行 */
+    white-space: nowrap;      /* 强制在一行显示，不换行 */
+    overflow: hidden;         /* 超出列宽的部分隐藏 */
+    text-overflow: ellipsis;  /* 超出部分用省略号(...)表示 */
+    
+    /* 关键属性：防止卡片在多列间被裁切 */
+    break-inside: avoid; 
+    margin-bottom: 8px;
+    
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+/* 个人高光歌曲卡片：图片在上，文字在下 */
+.song-grid[data-tab="个人高光"] .song-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    white-space: normal; /* 覆盖上面的 nowrap，让卡片可以容纳图片换行 */
+}
+
+.song-highlight-img {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* 按实际图片比例调整，1:1 是常见封面比例 */
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.song-grid[data-tab="个人高光"] .song-title {
+    white-space: nowrap; /* 单行省略只作用在文字上 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    font-size: 15px;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.empty-tip {
+    color: #666;
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px 0;
+    font-size: 15px;
+}
