@@ -5,29 +5,58 @@
     padding: 0;
 }
 
+html, body {
+    height: 100%;
+    /* 只让内部的歌单区域滚动，整页不滚动，
+       这样搜索栏/标签栏的位置永远固定，高度和歌单内容互不影响 */
+    overflow: hidden;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     /* 背景图设定为 Java 导出的 SVG */
-    background: url('image/background.png') no-repeat center center fixed;
+    background-image: url('image/background.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    /* cover 会让背景宽度始终铺满当前视口（含手机浏览器），并保持比例裁切 */
     background-size: cover;
-    min-height: 100vh;
+    /* 去掉 fixed：iOS/移动端浏览器地址栏收起展开时，
+       fixed 背景会跳动错位，是手机排版乱的常见原因之一 */
+    background-attachment: scroll;
+
+    /* 优先用动态视口高度，兼容不支持的浏览器则退回 100vh */
+    height: 100vh;
+    height: 100dvh;
+
     display: flex;
     justify-content: center;
 }
 
 /* 根据布局图调整的布局外框 */
 .main-container {
-    width: calc(100% - 40px);
+    width: calc(100% - 24px);
     max-width: 900px;
-    margin-top: 200px;   /* 上方留白 */
-    margin-left: 300px;  /* 左侧留白 */
+    margin: 16px auto;
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 120px);
+
+    height: calc(100vh - 32px);
+    height: calc(100dvh - 32px);
 }
 
-/* 搜索框 */
+/* 桌面/平板宽屏：还原原本贴合背景美术图的偏移布局 */
+@media (min-width: 768px) {
+    .main-container {
+        width: calc(100% - 40px);
+        margin: 200px auto 20px 300px;
+        height: calc(100vh - 220px);
+        height: calc(100dvh - 220px);
+    }
+}
+
+/* 搜索框：大小/位置不随歌单滚动变化 */
 .search-box {
+    flex: 0 0 auto;
     margin-bottom: 15px;
 }
 
@@ -44,6 +73,7 @@ body {
 
 /* 分类标签栏 */
 .tab-bar {
+    flex: 0 0 auto;
     display: flex;
     gap: 10px;
     border-bottom: 2px solid rgba(247, 245, 245, 0.952);
@@ -51,11 +81,21 @@ body {
     margin-bottom: 15px;
 
     /* 锁定高度，防止按钮高度微调影响下方排版 */
-    height: 45px; 
+    height: 45px;
     align-items: center;
+
+    /* 标签较多时可横向滚动，避免手机上挤爆换行 */
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+.tab-bar::-webkit-scrollbar {
+    display: none;
 }
 
 .tab-btn {
+    flex: 0 0 auto;
     border: none;
     background: transparent;
     padding: 8px 16px;
@@ -64,6 +104,7 @@ body {
     border-radius: 8px;
     transition: all 0.2s;
     color: #ffffff;
+    white-space: nowrap;
 }
 
 .tab-btn.active {
@@ -72,35 +113,38 @@ body {
     font-weight: bold;
 }
 
-/* 独立滚动区域 */
+/* 独立滚动区域：宽度始终相对屏幕/容器固定，只在垂直方向独立滚动 */
 .content-scroll-area {
     flex: 1;
-    overflow-y: auto; /* 允许垂直独立滚动 */
+    min-height: 0; /* 关键：flex 子项默认 min-height:auto 会撑破容器，导致滚动失效 */
+    width: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     padding-right: 10px;
 }
 
 /* 网格排列歌曲列表 */
 .song-grid {
-    /* 强制分为 4 列（如果屏幕小可自动适应） */
-    column-count: 4; 
-    
-    /* 两列之间的间距 */
-    column-gap: 8px; 
-    
+    /* 用 column-width 代替固定 column-count：
+       浏览器会根据当前可用宽度自动计算能放几列，
+       手机窄屏自动变少列，宽屏自动变多列，列宽跟着容器宽度自适应 */
+    column-width: 110px;
+    column-gap: 8px;
+
     width: 100%;
     padding-bottom: 20px;
 }
 .song-grid[data-tab="流行"] {
-    column-count: 4;
-    column-gap: 2px;
+    column-width: 100px;
+    column-gap: 6px;
 }
-/* 个人高光单独 3 列，间距放大以配合图片 */
+/* 个人高光单独更宽的列，间距放大以配合图片 */
 .song-grid[data-tab="个人高光"] {
-    column-count: 3;
+    column-width: 140px;
     column-gap: 16px;
 }
 
-/* 全局搜索时，若同时出现“高光结果”和“普通结果”两组网格，加一条分隔线 */
+/* 全局搜索时，若同时出现"高光结果"和"普通结果"两组网格，加一条分隔线 */
 #resultsContainer .song-grid + .song-grid {
     margin-top: 8px;
     padding-top: 16px;
@@ -124,11 +168,11 @@ body {
     white-space: nowrap;      /* 强制在一行显示，不换行 */
     overflow: hidden;         /* 超出列宽的部分隐藏 */
     text-overflow: ellipsis;  /* 超出部分用省略号(...)表示 */
-    
+
     /* 关键属性：防止卡片在多列间被裁切 */
-    break-inside: avoid; 
+    break-inside: avoid;
     margin-bottom: 8px;
-    
+
     transition: color 0.2s ease, opacity 0.2s ease;
 }
 
