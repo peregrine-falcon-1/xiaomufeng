@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>歌单主页</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="搜索歌曲..." oninput="handleSearch()">
+        </div>
+
+        <div class="tab-bar" id="tabBar">
+            <button class="tab-btn active" onclick="switchTab('流行')">流行</button>
+            <button class="tab-btn" onclick="switchTab('民谣')">民谣</button>
+            <button class="tab-btn" onclick="switchTab('粤语')">粤语</button>
+            <button class="tab-btn" onclick="switchTab('偏古风')">偏古风</button>
+            <button class="tab-btn" onclick="switchTab('个人高光')">个人高光</button>
+        </div>
+
+        <div class="content-scroll-area">
+            <div id="resultsContainer"></div>
+        </div>
+    </div>
+
+    <script>
+        let allSongsData = {};
+        let currentTab = '流行';
+        const HIGHLIGHT_TAB = '个人高光';
+
+        // 初始化：读取 Java 生成的 json
+        fetch('./data/songs.json')
+            .then(res => res.json())
+            .then(data => {
+                allSongsData = data;
+                renderSongs();
+            })
+            .catch(err => console.error("加载数据失败:", err));
+
+        // 切换 Tab
+        function switchTab(category) {
+            currentTab = category;
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.innerText === category);
+            });
+            document.getElementById('searchInput').value = ''; // 切 tab 时清空搜索框
+            renderSongs();
+        }
+
+        // 构建单个歌曲卡片（区分普通 / 个人高光两种结构）
+        function buildSongItem(category, song) {
+            const card = document.createElement('div');
+            card.className = 'song-item';
+
+            if (category === HIGHLIGHT_TAB) {
+                const img = document.createElement('img');
+                img.className = 'song-highlight-img';
+                img.src = song.cover;
+                img.alt = '';
+                const title = document.createElement('span');
+                title.className = 'song-title';
+                title.innerText = song.title;
+                card.appendChild(img);
+                card.appendChild(title);
+            } else {
+                card.innerText = song;
+                card.title = category; // 全局搜索时鼠标悬停可见来源分类
+            }
+            return card;
+        }
+
+        // 全局搜索：遍历所有分类，拆分为高光结果 / 普通结果
+        function globalSearch(keyword) {
+            const highlightMatches = [];
+            const normalMatches = [];
+            const lowerKeyword = keyword.toLowerCase();
+
+            Object.keys(allSongsData).forEach(category => {
+                const list = allSongsData[category] || [];
+                list.forEach(song => {
+                    const title = category === HIGHLIGHT_TAB ? song.title : song;
+                    if (title.toLowerCase().includes(lowerKeyword)) {
+                        if (category === HIGHLIGHT_TAB) {
+                            highlightMatches.push(song);
+                        } else {
+                            normalMatches.push({ category, title });
+                        }
+                    }
+                });
+            });
+
+            return { highlightMatches, normalMatches };
+        }
+
+        // 渲染歌曲列表
+        function renderSongs(filterKeyword = '') {
+            const container = document.getElementById('resultsContainer');
+            container.innerHTML = '';
+            const keyword = filterKeyword.trim();
+
+            // 场景一：没有搜索词，按当前 tab 正常显示
+            if (keyword === '') {
+                const list = allSongsData[currentTab] || [];
+                const grid = document.createElement('div');
+                grid.className = 'song-grid';
+                grid.setAttribute('data-tab', currentTab);
+
+                if (list.length === 0) {
+                    grid.innerHTML = '<div class="empty-tip">暂无相关歌曲</div>';
+                } else {
+                    list.forEach(song => grid.appendChild(buildSongItem(currentTab, song)));
+                }
+                container.appendChild(grid);
+                return;
+            }
+
+            // 场景二：有搜索词，全局搜索所有 tab
+            const { highlightMatches, normalMatches } = globalSearch(keyword);
+
+            if (highlightMatches.length === 0 && normalMatches.length === 0) {
+                container.innerHTML = '<div class="empty-tip">暂无相关歌曲</div>';
+                return;
+            }
+
+            // 命中的“个人高光”结果：3列 + 图片
+            if (highlightMatches.length > 0) {
+                const hGrid = document.createElement('div');
+                hGrid.className = 'song-grid';
+                hGrid.setAttribute('data-tab', HIGHLIGHT_TAB);
+                highlightMatches.forEach(song => hGrid.appendChild(buildSongItem(HIGHLIGHT_TAB, song)));
+                container.appendChild(hGrid);
+            }
+
+            // 其他 tab 命中结果：统一4列纯文字混排
+            if (normalMatches.length > 0) {
+                const nGrid = document.createElement('div');
+                nGrid.className = 'song-grid';
+                normalMatches.forEach(item => nGrid.appendChild(buildSongItem(item.category, item.title)));
+                container.appendChild(nGrid);
+            }
+        }
+
+        // 搜索处理
+        function handleSearch() {
+            const query = document.getElementById('searchInput').value;
+            renderSongs(query);
+        }
+    </script>
+</body>
+</html>
