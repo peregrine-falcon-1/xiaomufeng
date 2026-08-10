@@ -126,7 +126,7 @@ body {
    只有最后一整行如果条目数不是列数的整数倍会略短，这是按列分组排版本身难以避免的。 */
 .song-grid {
     column-count: 2;
-    column-gap: 8px;
+    column-gap: 4px;
 
     width: 100%;
     padding-bottom: 20px;
@@ -135,14 +135,14 @@ body {
 @media (min-width: 640px) and (max-width: 1099px) {
     .song-grid {
         column-count: 3;
-        column-gap: 10px;
+        column-gap: 5px;
     }
 }
 
 @media (min-width: 1100px) {
     .song-grid {
         column-count: 4;
-        column-gap: 8px;
+        column-gap: 4px;
     }
 }
 
@@ -150,7 +150,7 @@ body {
 .song-grid[data-tab="个人高光"] {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 16px;
+    gap: 10px;
     column-count: unset;
 }
 
