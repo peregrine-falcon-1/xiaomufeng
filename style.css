@@ -8,7 +8,7 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     /* 背景图设定为 Java 导出的 SVG */
-    background: url('./images/background.png') no-repeat center center fixed;
+    background: url('images/background.png') no-repeat center center fixed;
     background-size: cover;
     min-height: 100vh;
     display: flex;
