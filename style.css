@@ -52,21 +52,20 @@ body {
    留白按比例适中，不套用桌面端的大偏移 */
 @media (min-width: 640px) and (max-width: 1099px) {
     .main-container {
-        width: 88%;
-        height: 75vh;
-        height: 75dvh;
-        margin: 12vh auto 0 6%;
+        width: 65%;
+        height: 70%;
+        margin-top: 28.62vh;
+        margin-left: 30vw;
     }
 }
 
 /* 桌面宽屏（≥ 1100px）：还原原本贴合背景美术图的偏移布局 */
 @media (min-width: 1100px) {
     .main-container {
-        width: 65.238%;
-        height: 69.7vh;
-        height: 69.7dvh;
+        width: 65%;
+        height: 70%;
+
         margin-top: 28.62vh;
-        margin-top: 28.62dvh;
         margin-left: 30vw;
     }
 }
