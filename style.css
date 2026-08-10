@@ -142,7 +142,7 @@ body {
 
 .song-highlight-img {
     width: 100%;
-    aspect-ratio: 1 / 1; /* 按实际图片比例调整，1:1 是常见封面比例 */
+    aspect-ratio: 1724 / 906; /* 按实际图片比例调整，1:1 是常见封面比例 */
     object-fit: cover;
     border-radius: 8px;
     margin-bottom: 8px;
