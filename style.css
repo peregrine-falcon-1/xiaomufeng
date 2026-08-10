@@ -35,34 +35,39 @@ body {
 /* 根据布局图调整的布局外框 */
 /* 手机（默认，< 640px）：更充足的上方/左侧留白，不要贴边 */
 .main-container {
-    width: calc(100% - 40px);
-    max-width: 900px;
-    margin: 44px auto 16px 24px;
+    width: 65%;
+    height: 70%;
+
+    /* 页边距设置：绝对定位或 margin 均可，这里使用 margin 定位 */
+    margin-top: 28.62vh;     /* 85 / 297 (占视口高度) */
+    margin-left: 30vw;       /* 63 / 210 (占视口宽度) */
+    margin-right: auto;
+    margin-bottom: 0;
+
     display: flex;
     flex-direction: column;
-
-    height: calc(100vh - 60px);
-    height: calc(100dvh - 60px);
 }
 
 /* 平板（640px – 1099px，覆盖 iPad 竖屏 768 / 横屏 1024 等）：
    留白按比例适中，不套用桌面端的大偏移 */
 @media (min-width: 640px) and (max-width: 1099px) {
     .main-container {
-        width: calc(100% - 100px);
-        margin: 72px auto 24px 60px;
-        height: calc(100vh - 96px);
-        height: calc(100dvh - 96px);
+        width: 88%;
+        height: 75vh;
+        height: 75dvh;
+        margin: 12vh auto 0 6%;
     }
 }
 
 /* 桌面宽屏（≥ 1100px）：还原原本贴合背景美术图的偏移布局 */
 @media (min-width: 1100px) {
     .main-container {
-        width: calc(100% - 40px);
-        margin: 200px auto 20px 300px;
-        height: calc(100vh - 220px);
-        height: calc(100dvh - 220px);
+        width: 65.238%;
+        height: 69.7vh;
+        height: 69.7dvh;
+        margin-top: 28.62vh;
+        margin-top: 28.62dvh;
+        margin-left: 30vw;
     }
 }
 
