@@ -134,14 +134,14 @@ body {
 @media (min-width: 640px) and (max-width: 1099px) {
     .song-grid {
         column-count: 3;
-        column-gap: 5px;
+        column-gap: 3px;
     }
 }
 
 @media (min-width: 1100px) {
     .song-grid {
         column-count: 4;
-        column-gap: 4px;
+        column-gap: 3px;
     }
 }
 
@@ -169,7 +169,7 @@ body {
 /* 文字排列样式 */
     padding: 10px 8px;
     text-align: left; /* 改为靠左对齐更符合纯文本歌单习惯，如需居中可改回 center */
-    font-size: 15px;
+    font-size: 12px;
     color: #ffffff;
     font-weight: 500;
 
