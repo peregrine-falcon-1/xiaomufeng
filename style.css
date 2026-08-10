@@ -33,19 +33,31 @@ body {
 }
 
 /* 根据布局图调整的布局外框 */
+/* 手机（默认，< 640px）：更充足的上方/左侧留白，不要贴边 */
 .main-container {
-    width: calc(100% - 24px);
+    width: calc(100% - 40px);
     max-width: 900px;
-    margin: 16px auto;
+    margin: 44px auto 16px 24px;
     display: flex;
     flex-direction: column;
 
-    height: calc(100vh - 32px);
-    height: calc(100dvh - 32px);
+    height: calc(100vh - 60px);
+    height: calc(100dvh - 60px);
 }
 
-/* 桌面/平板宽屏：还原原本贴合背景美术图的偏移布局 */
-@media (min-width: 768px) {
+/* 平板（640px – 1099px，覆盖 iPad 竖屏 768 / 横屏 1024 等）：
+   留白按比例适中，不套用桌面端的大偏移 */
+@media (min-width: 640px) and (max-width: 1099px) {
+    .main-container {
+        width: calc(100% - 100px);
+        margin: 72px auto 24px 60px;
+        height: calc(100vh - 96px);
+        height: calc(100dvh - 96px);
+    }
+}
+
+/* 桌面宽屏（≥ 1100px）：还原原本贴合背景美术图的偏移布局 */
+@media (min-width: 1100px) {
     .main-container {
         width: calc(100% - 40px);
         margin: 200px auto 20px 300px;
@@ -124,24 +136,41 @@ body {
 }
 
 /* 网格排列歌曲列表 */
+/* 用多栏布局（先填满一列、再填下一列），
+   这样"流行"歌单按字数排序时，字数相近的歌会自然落在同一列里，符合设计意图。
+   用固定的 column-count（按断点锁列数）而不是 column-width（按宽度反推列数），
+   列数在各断点下是确定值，不会因为宽度计算误差忽多忽少、导致列宽/对齐忽好忽坏。
+   歌曲条目都是单行（white-space: nowrap + 省略号），高度一致，
+   浏览器做列高平衡时会把每列的条目数分得很均匀，各行基本对齐，
+   只有最后一整行如果条目数不是列数的整数倍会略短，这是按列分组排版本身难以避免的。 */
 .song-grid {
-    /* 用 column-width 代替固定 column-count：
-       浏览器会根据当前可用宽度自动计算能放几列，
-       手机窄屏自动变少列，宽屏自动变多列，列宽跟着容器宽度自适应 */
-    column-width: 110px;
+    column-count: 2;
     column-gap: 8px;
 
     width: 100%;
     padding-bottom: 20px;
 }
-.song-grid[data-tab="流行"] {
-    column-width: 100px;
-    column-gap: 6px;
+
+@media (min-width: 640px) and (max-width: 1099px) {
+    .song-grid {
+        column-count: 3;
+        column-gap: 10px;
+    }
 }
-/* 个人高光单独更宽的列，间距放大以配合图片 */
+
+@media (min-width: 1100px) {
+    .song-grid {
+        column-count: 4;
+        column-gap: 8px;
+    }
+}
+
+/* 个人高光是图片卡片，不涉及"按字数分组"，继续用 Grid 保证图片行对齐 */
 .song-grid[data-tab="个人高光"] {
-    column-width: 140px;
-    column-gap: 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 16px;
+    column-count: unset;
 }
 
 /* 全局搜索时，若同时出现"高光结果"和"普通结果"两组网格，加一条分隔线 */
