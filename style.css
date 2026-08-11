@@ -17,16 +17,16 @@ body {
     /* 背景图设定为 Java 导出的 SVG */
     background-image: url('image/background.png');
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: top center;
     /* cover 会让背景宽度始终铺满当前视口（含手机浏览器），并保持比例裁切 */
-    background-size: cover;
+    background-size: 100% auto;
     /* 去掉 fixed：iOS/移动端浏览器地址栏收起展开时，
        fixed 背景会跳动错位，是手机排版乱的常见原因之一 */
     background-attachment: scroll;
 
     /* 优先用动态视口高度，兼容不支持的浏览器则退回 100vh */
-    height: 100vh;
-    height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
 
     display: flex;
     justify-content: center;
