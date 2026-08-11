@@ -33,8 +33,8 @@ body {
 }
 
 /* 根据布局图调整的布局外框 */
-/* 手机（默认，< 640px）：更充足的上方/左侧留白，不要贴边 */
 .main-container {
+    display: flex;
     width: 65%;
     height: 70%;
     margin-top: 16.83vh;
