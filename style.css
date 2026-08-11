@@ -19,7 +19,7 @@ body {
     background-repeat: no-repeat;
     background-position: top center;
     /* cover 会让背景宽度始终铺满当前视口（含手机浏览器），并保持比例裁切 */
-    background-size: 100% auto;
+    background-size: auto 100%;
     /* 去掉 fixed：iOS/移动端浏览器地址栏收起展开时，
        fixed 背景会跳动错位，是手机排版乱的常见原因之一 */
     background-attachment: scroll;
