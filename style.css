@@ -121,8 +121,7 @@ body {
    浏览器做列高平衡时会把每列的条目数分得很均匀，各行基本对齐，
    只有最后一整行如果条目数不是列数的整数倍会略短，这是按列分组排版本身难以避免的。 */
 .song-grid {
-    column-count: 2;
-    column-gap: 8px;
+    column-count: 1;
 
     width: 100%;
     padding-bottom: 20px;
