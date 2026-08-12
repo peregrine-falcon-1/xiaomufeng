@@ -50,29 +50,30 @@
             renderSongs();
         }
 
-        // 构建单个歌曲卡片（区分普通 / 个人高光两种结构）
+        // 构建单个歌曲卡片
         function buildSongItem(category, song) {
             const card = document.createElement('div');
             card.className = 'song-item';
-    
+        
             if (category === HIGHLIGHT_TAB) {
                 const character = document.createElement('div');
                 character.className = 'song-highlight-character';
-                character.innerText = song.character;
-    
-                const from = document.createElement('div');
-                from.className = 'song-highlight-from';
-                from.innerText = song.from;
-    
-                card.appendChild(character);
-                card.appendChild(from);
+                character.innerText = song.character || '';
+        
+                // 仅当存在 from 字段时才渲染出处，避免显示 undefined
+                if (song.from) {
+                    const from = document.createElement('div');
+                    from.className = 'song-highlight-from';
+                    from.innerText = song.from;
+                    card.appendChild(from);
+                }
+                card.prepend(character);
             } else {
                 card.innerText = song;
             }
-    
+        
             return card;
         }
-    
         // 全局搜索：遍历所有分类，拆分为高光结果 / 普通结果
         function globalSearch(keyword) {
             const highlightMatches = [];
