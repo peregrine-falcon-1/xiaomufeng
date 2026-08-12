@@ -54,44 +54,58 @@
         function buildSongItem(category, song) {
             const card = document.createElement('div');
             card.className = 'song-item';
-
+    
             if (category === HIGHLIGHT_TAB) {
-                const img = document.createElement('img');
-                img.className = 'song-highlight-img';
-                img.src = song.cover;
-                img.alt = '';
-                const title = document.createElement('span');
-                title.className = 'song-title';
-                title.innerText = song.title;
-                card.appendChild(img);
-                card.appendChild(title);
+                const character = document.createElement('div');
+                character.className = 'song-highlight-character';
+                character.innerText = song.character;
+    
+                const from = document.createElement('div');
+                from.className = 'song-highlight-from';
+                from.innerText = song.from;
+    
+                card.appendChild(character);
+                card.appendChild(from);
             } else {
                 card.innerText = song;
-                card.title = category; // 全局搜索时鼠标悬停可见来源分类
             }
+    
             return card;
         }
-
+    
         // 全局搜索：遍历所有分类，拆分为高光结果 / 普通结果
         function globalSearch(keyword) {
             const highlightMatches = [];
             const normalMatches = [];
             const lowerKeyword = keyword.toLowerCase();
-
+    
             Object.keys(allSongsData).forEach(category => {
                 const list = allSongsData[category] || [];
+    
                 list.forEach(song => {
-                    const title = category === HIGHLIGHT_TAB ? song.title : song;
-                    if (title.toLowerCase().includes(lowerKeyword)) {
-                        if (category === HIGHLIGHT_TAB) {
+                    if (category === HIGHLIGHT_TAB) {
+                        const character = song.character || '';
+                        const from = song.from || '';
+    
+                        // character / from 任一字段匹配，
+                        // 但返回时始终保留完整的两字段
+                        if (
+                            character.toLowerCase().includes(lowerKeyword) ||
+                            from.toLowerCase().includes(lowerKeyword)
+                        ) {
                             highlightMatches.push(song);
-                        } else {
-                            normalMatches.push({ category, title });
+                        }
+                    } else {
+                        if (song.toLowerCase().includes(lowerKeyword)) {
+                            normalMatches.push({
+                                category,
+                                title: song
+                            });
                         }
                     }
                 });
             });
-
+    
             return { highlightMatches, normalMatches };
         }
 
