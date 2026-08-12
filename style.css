@@ -181,31 +181,35 @@ body {
     transition: color 0.2s ease, opacity 0.2s ease;
 }
 
-/* 个人高光歌曲卡片：图片在上，文字在下 */
+/* 个人高光歌曲卡片：character 在上，from 在下 */
 .song-grid[data-tab="个人高光"] .song-item {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    white-space: normal; /* 覆盖上面的 nowrap，让卡片可以容纳图片换行 */
+    justify-content: center;
+    white-space: normal;
 }
 
-.song-highlight-img {
-    width: 100%;
-    aspect-ratio: 1724 / 906; /* 按实际图片比例调整，1:1 是常见封面比例 */
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 8px;
-    display: block;
-}
-
-.song-grid[data-tab="个人高光"] .song-title {
-    white-space: nowrap; /* 单行省略只作用在文字上 */
-    overflow: hidden;
-    text-overflow: ellipsis;
+/* 人物名称 */
+.song-highlight-character {
     width: 100%;
     font-size: 15px;
     color: #ffffff;
     font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 作品出处 */
+.song-highlight-from {
+    width: 100%;
+    margin-top: 4px;
+    font-size: 13px;
+    color: #999999;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .empty-tip {
