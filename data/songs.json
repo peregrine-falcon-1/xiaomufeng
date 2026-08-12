@@ -249,196 +249,193 @@
   ],
   "个人高光": [
     {
-      "title": "《无畏契约》猎枭",
-      "cover": "image/highlights/01.png"
+      "character": "猎枭",
+      "from": "《无畏契约》"
     },
     {
-      "title": "张癫",
-      "cover": "image/highlights/02.png"
+      "character": "张癫",
     },
     {
-      "title": "《魔道祖师》蓝忘机",
-      "cover": "image/highlights/03.png"
+      "character": "蓝忘机",
+      "from": "《魔道祖师》"
     },
     {
-      "title": "《偷偷藏不住》段嘉许",
-      "cover": "image/highlights/04.png"
+      "character": "段嘉许",
+      "from": "《偷偷藏不住》"
     },
     {
-      "title": "《光与夜之恋》陆沉",
-      "cover": "image/highlights/05.png"
+      "character": "陆沉",
+      "from": "《光与夜之恋》g"
     },
     {
-      "title": "《长安三万里》李白",
-      "cover": "image/highlights/06.png"
+      "character": "李白",
+      "from": "《长安三万里》"
     },
     {
-      "title": "《东厂观察笔记》邓瑛",
-      "cover": "image/highlights/07.png"
+      "character": "邓瑛",
+      "from": "《东厂观察笔记》"
     },
     {
-      "title": "《惊封》唐二打",
-      "cover": "image/highlights/08.png"
+      "character": "唐二打",
+      "from": "《惊封》"
     },
     {
-      "title": "《龙族》楚子航",
-      "cover": "image/highlights/09.png"
+      "character": "楚子航",
+      "from": "《龙族》"
     },
     {
-      "title": "《恋与深空》 秦彻",
-      "cover": "image/highlights/10.png"
+      "character": "秦彻",
+      "from": "《恋与深空》"
     },
     {
-      "title": "《惊封》黑桃",
-      "cover": "image/highlights/11.png"
+      "character": "黑桃",
+      "from": "《惊封》"
     },
     {
-      "title": "《道诡异仙》李火旺",
-      "cover": "image/highlights/12.png"
+      "character": "李火旺",
+      "from": "《道诡异仙》"
     },
     {
-      "title": "《镖人》刀马",
-      "cover": "image/highlights/13.png"
+      "character": "刀马",
+      "from": "《镖人》"
     },
     {
-      "title": "《AWM》祁醉",
-      "cover": "image/highlights/14.png"
+      "character": "祁醉",
+      "from": "《AWM》"
     },
     {
-      "title": "《无限练习生》恶魔",
-      "cover": "image/highlights/15.png"
+      "character": "恶魔",
+      "from": "《无限练习生》"
     },
     {
-      "title": "杀神白起",
-      "cover": "image/highlights/16.png"
+      "character": "杀神白起",
     },
     {
-      "title": "小丑",
-      "cover": "image/highlights/17.png"
+      "character": "小丑",
     },
     {
-      "title": "《不良人》袁天罡",
-      "cover": "image/highlights/18.png"
+      "character": "袁天罡",
+      "from": "《不良人》"
     },
     {
-      "title": "《英雄联盟》亚恒",
-      "cover": "image/highlights/19.png"
+      "character": "亚恒",
+      "from": "《英雄联盟》"
     },
     {
-      "title": "《王者荣耀》韩信",
-      "cover": "image/highlights/20.png"
+      "character": "韩信",
+      "from": "《王者荣耀》"
     },
     {
-      "title": "《不良人》李星云",
-      "cover": "image/highlights/21.png"
+      "character": "李星云",
+      "from": "《不良人》"
     },
     {
-      "title": "《英雄联盟》戏命师·烬",
-      "cover": "image/highlights/22.png"
+      "character": "戏命师·烬",
+      "from": "《英雄联盟》"
     },
     {
-      "title": "《我不是戏神》陈伶",
-      "cover": "image/highlights/23.png"
+      "character": "陈伶",
+      "from": "《我不是戏神》"
     },
     {
-      "title": "《不良人》章五郎",
-      "cover": "image/highlights/24.png"
+      "character": "章五郎",
+      "from": "《不良人》"
     },
     {
-      "title": "《十日终焉》 楚天秋",
-      "cover": "image/highlights/25.png"
+      "character": "楚天秋",
+      "from": "《十日终焉》"
     },
     {
-      "title": "《双城之战》希尔科",
-      "cover": "image/highlights/26.png"
+      "character": "希尔科",
+      "from": "《双城之战》"
     },
     {
-      "title": "《剑来》崔巉",
-      "cover": "image/highlights/27.png"
+      "character": "崔巉",
+      "from": "《剑来》"
     },
     {
-      "title": "《黑神话》黄眉",
-      "cover": "image/highlights/28.png"
+      "character": "黄眉",
+      "from": "《黑神话》"
     },
     {
-      "title": "《双城之战》维克托",
-      "cover": "image/highlights/29.png"
+      "character": "维克托",
+      "from": "《双城之战》"
     },
     {
-      "title": "《剑来》阿良",
-      "cover": "image/highlights/30.png"
+      "character": "阿良",
+      "from": "《剑来》"
     },
     {
-      "title": "《小蘑菇》陆洞",
-      "cover": "image/highlights/31.png"
+      "character": "陆洞",
+      "from": "《小蘑菇》"
     },
     {
-      "title": "《撒野》蒋丞",
-      "cover": "image/highlights/32.png"
+      "character": "蒋丞",
+      "from": "《撒野》"
     },
     {
-      "title": "《剑来》齐静春",
-      "cover": "image/highlights/33.png"
+      "character": "齐静春",
+      "from": "《剑来》"
     },
     {
-      "title": "《仙逆》王林",
-      "cover": "image/highlights/34.png"
+      "character": "王林",
+      "from": "《仙逆》"
     },
     {
-      "title": "《将进酒》乔松月",
-      "cover": "image/highlights/35.png"
+      "character": "乔松月",
+      "from": "《将进酒》"
     },
     {
-      "title": "《代号鸯》刘辩",
-      "cover": "image/highlights/36.png"
+      "character": "刘辩",
+      "from": "《代号鸯》"
     },
     {
-      "title": "《仙逆》 拓森",
-      "cover": "image/highlights/37.png"
+      "character": "拓森",
+      "from": "《仙逆》"
     },
     {
-      "title": "《将进酒》齐慧连",
-      "cover": "image/highlights/38.png"
+      "character": "齐慧连",
+      "from": "《将进酒》"
     },
     {
-      "title": "《流氓叙事》以撒",
-      "cover": "image/highlights/39.png"
+      "character": "以撒",
+      "from": "《流氓叙事》"
     },
     {
-      "title": "《斩神》赵空城",
-      "cover": "image/highlights/40.png"
+      "character": "赵空城",
+      "from": "《斩神》"
     },
     {
-      "title": "《将进酒》萧策安",
-      "cover": "image/highlights/41.png"
+      "character": "萧策安",
+      "from": "《将进酒》"
     },
     {
-      "title": "《流氓叙事》蒋伯驾",
-      "cover": "image/highlights/42.png"
+      "character": "蒋伯驾",
+      "from": "《流氓叙事》"
     },
     {
-      "title": "《斩神》沈青竹",
-      "cover": "image/highlights/43.png"
+      "character": "沈青竹",
+      "from": "《斩神》"
     },
     {
-      "title": "《完美世界》石毅",
-      "cover": "image/highlights/44.png"
+      "character": "石毅",
+      "from": "《完美世界》"
     },
     {
-      "title": "《三角洲行动》格赫罗斯",
-      "cover": "image/highlights/45.png"
+      "character": "格赫罗斯",
+      "from": "《三角洲行动》"
     },
     {
-      "title": "《奇洛李维斯回信》赵声阁",
-      "cover": "image/highlights/46.png"
+      "character": "赵声阁",
+      "from": "《奇洛李维斯回信》"
     },
     {
-      "title": "《默读》骆闻舟",
-      "cover": "image/highlights/47.png"
+      "character": "骆闻舟",
+      "from": "《默读》"
     },
     {
-      "title": "《三角洲行动》渡鸦",
-      "cover": "image/highlights/48.png"
+      "character": "渡鸦",
+      "from": "《三角洲行动》"
     }
   ]
 }
